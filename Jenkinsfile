@@ -47,7 +47,7 @@ helm version
 
 ip a
 
-uanme -a
+uname -a
 
 whoami
 
