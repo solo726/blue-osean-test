@@ -1,9 +1,38 @@
 pipeline {
-  agent any
+  agent {
+    kubernetes {
+      label "jenkins-job-jnlp-${UUID.randomUUID().toString()}"
+      yaml '''
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: jnlp
+    image: \'solo726/jenkins:jnlp-slave\'
+    tty: true
+    volumeMounts:
+      - name: docker-sock
+        mountPath: /var/run/docker.sock
+      - name: kube-config
+        mountPath: /root/.kube
+  volumes:
+    - name: docker-sock
+      hostPath:
+        path: /var/run/docker.sock
+    - name: kube-config
+      secret:
+        secretName: kubeconfig
+        items:
+          - key: config
+            path: config
+'''
+    }
+
+  }
   stages {
     stage('prepare') {
       parallel {
-        stage('prepare') {
+        stage('debug info') {
           steps {
             echo 'debug info'
           }
