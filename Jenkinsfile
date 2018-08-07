@@ -34,7 +34,35 @@ spec:
       parallel {
         stage('debug info') {
           steps {
-            echo 'debug info'
+            sh '''
+hostname
+
+docker version
+
+go version 
+
+kubectl version
+
+helm version
+
+ip -a
+
+whoami
+
+pwd
+
+set
+
+
+mkdir /pipeline-info
+
+echo `git rev-parse --short HEAD` > /pipeline-info/git-commit
+
+
+echo "git-commit:`cat /pipeline-info/git-commit`"\'\'\'
+
+
+'''
           }
         }
         stage('code fmt') {
