@@ -45,7 +45,9 @@ kubectl version
 
 helm version
 
-ip -a
+ip a
+
+uanme -a
 
 whoami
 
