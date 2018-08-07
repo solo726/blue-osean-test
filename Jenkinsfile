@@ -43,6 +43,8 @@ go version
 
 kubectl version
 
+kubectl get pods
+
 helm version
 
 ip a
