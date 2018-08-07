@@ -61,7 +61,7 @@ mkdir /pipeline-info
 echo `git rev-parse --short HEAD` > /pipeline-info/git-commit
 
 
-echo "git-commit:`cat /pipeline-info/git-commit`"\'\'\'
+echo "git-commit:`cat /pipeline-info/git-commit`"
 
 
 '''
