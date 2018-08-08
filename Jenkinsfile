@@ -77,7 +77,7 @@ ls -la /tmp/blue-osean-test
 
 cd /tmp
 
-go fmt  blue-osean-test'''
+go fmt  blue-osean-test/'''
           }
         }
         stage('image build') {
