@@ -121,13 +121,14 @@ docker run --rm ${imageName} go test -v -cover=true /go/src/blue-osean-test/main
         sh '''imageName=`cat /pipeline-info/image-name`
 
 
-    docker.withRegistry(\'https://registry.hub.docker.com\', \'41cdf4bc-44a8-42ab-9bdb-b5739314bad1\') {
 
-        def customImage = docker.build("${imageName}")
-
-        /* Push the container to the custom Registry */
-        customImage.push()
-    }'''
+withCredentials([
+    usernamePassword(credentialsId:\'41cdf4bc-44a8-42ab-9bdb-b5739314bad1
+\', usernameVariable: \'dockerUser\', passwordVariable: \'dockerPwd\')
+]){
+ docker login -u ${DockerHubUser} -p ${DockerHubPassword}
+ docker push ${imageName}
+}'''
       }
     }
     stage('deploy') {
