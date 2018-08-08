@@ -105,8 +105,7 @@ docker build -f deploy/docker/Dockerfile . --tag ${imageName}
     }
     stage('unit test') {
       steps {
-        sh '''set 
-
+        sh '''
 imageName=`cat /pipeline-info/image-name`
 
 echo "${imageName}"
