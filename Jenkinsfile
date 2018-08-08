@@ -118,7 +118,7 @@ docker run --rm ${imageName} go test -v -cover=true /go/src/blue-osean-test/main
     }
     stage('image push') {
       steps {
-        sh '''imageName = `cat /pipeline-info/image-name`
+        sh '''imageName=`cat /pipeline-info/image-name`
 
 docker.withRegistry(\'https://hub.docker.com/u/solo726/\', \'41cdf4bc-44a8-42ab-9bdb-b5739314bad1\') {
         
