@@ -27,6 +27,7 @@ spec:
             path: config
 '''
     }
+
   }
   stages {
     stage('prepare') {
@@ -70,7 +71,11 @@ echo "git-commit:`cat /pipeline-info/git-commit`"
         }
         stage('code fmt') {
           steps {
-            echo 'code fmt'
+            sh '''cp -r $WORKSPACE /tmp/blue-osean-test
+
+cd /tmp
+
+go fmt  blue-osean-test'''
           }
         }
         stage('image build') {
