@@ -118,17 +118,26 @@ docker run --rm ${imageName} go test -v -cover=true /go/src/blue-osean-test/main
     }
     stage('image push') {
       steps {
-withCredentials([usernamePassword( credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-        sh '''
+        withCredentials(bindings: [usernamePassword( credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+          sh '''
             docker login -u ${USERNAME} -p ${PASSWORD}
             docker push `cat /pipeline-info/image-name`
           '''
-}
+        }
+
       }
     }
     stage('deploy') {
       steps {
-        sh 'echo deploy'
+        sh '''cd /tmp/blue-osean-test
+
+helm upgrade \\\\
+--install \\\\
+--namespace blue-osean-test \\\\
+--debug \\\\
+--set images=`cat /pipeline-info/image-name` \\\\
+bookinfo \\\\
+deploy/helm/blue-osean-test'''
       }
     }
   }
