@@ -73,6 +73,8 @@ echo "git-commit:`cat /pipeline-info/git-commit`"
           steps {
             sh '''cp -r $WORKSPACE /tmp/blue-osean-test
 
+ls -la /tmp/blue-osean-test
+
 cd /tmp
 
 go fmt  blue-osean-test'''
