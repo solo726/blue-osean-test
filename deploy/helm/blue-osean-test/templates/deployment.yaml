@@ -1,0 +1,21 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blue-osean-test
+  template:
+    metadata:
+      labels:
+        app: blue-osean-test
+    spec:
+      containers:
+        - name: blue-osean-test
+          image: {{ .Values.images }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
