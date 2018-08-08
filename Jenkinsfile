@@ -118,6 +118,7 @@ docker run --rm ${imageName} go test -v -cover=true /go/src/blue-osean-test/main
     }
     stage('image push') {
       steps {
+      sh '''
        withCredentials([usernamePassword( credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
 
            docker.withRegistry('', 'docker-hub-credentials') {
@@ -125,6 +126,7 @@ docker run --rm ${imageName} go test -v -cover=true /go/src/blue-osean-test/main
            myImage.push("solo726/blue-osean-test:v1")
            myImage.push("latest")
            }
+        '''
        }
       }
     }
