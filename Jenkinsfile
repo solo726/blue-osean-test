@@ -120,14 +120,9 @@ docker run --rm ${imageName} go test -v -cover=true /go/src/blue-osean-test/main
       steps {
         sh '''imageName=`cat /pipeline-info/image-name`
 
-
-
-withCredentials([
-    usernamePassword(credentialsId:\'41cdf4bc-44a8-42ab-9bdb-b5739314bad1
-\', usernameVariable: \'dockerUser\', passwordVariable: \'dockerPwd\')
-]){
- docker login -u ${DockerHubUser} -p ${DockerHubPassword}
- docker push ${imageName}
+withCredentials([usernamePassword(credentialsId: \'41cdf4bc-44a8-42ab-9bdb-b5739314bad1\', passwordVariable: \'DOCKER_PASSWORD\', usernameVariable: \'DOCKER_USERNAME\')]) {
+    docker login -u ${DockerHubUser} -p ${DockerHubPassword}
+    docker push ${imageName}
 }'''
       }
     }
