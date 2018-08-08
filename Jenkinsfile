@@ -27,9 +27,6 @@ spec:
             path: config
 '''
     }
-  triggers {
-        cron('H/1 * * * *')
-    }
   }
   stages {
     stage('prepare') {
