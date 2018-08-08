@@ -75,9 +75,9 @@ echo "git-commit:`cat /pipeline-info/git-commit`"
 
 ls -la /tmp/blue-osean-test
 
-cd /tmp
+cd /tmp/blue-osean-test
 
-go fmt  blue-osean-test/'''
+go fmt  '''
           }
         }
         stage('image build') {
