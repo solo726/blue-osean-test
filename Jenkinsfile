@@ -96,12 +96,8 @@ echo "${imageName}" > /pipeline-info/image-name
 
 cd /tmp
 
-export IMAGENAME="${imageName}"
-
 docker build -f blue-osean-test/deploy/docker/Dockerfile . --tag ${imageName}
 
-
-set
 '''
           }
         }
@@ -111,9 +107,12 @@ set
       steps {
         sh '''set 
 
+imageName=`cat /pipeline-info/image-name`
 
 echo "${imageName}"
 
+
+docker run --rm ${imageName} go test -v -cover=true /go/src/blue-osean-test/main_test.go /go/src/blue-osean-test/main.go
 
 '''
       }
