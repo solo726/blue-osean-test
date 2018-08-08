@@ -125,7 +125,7 @@ sh "docker login -u ${USERNAME} -p ${PASSWORD}"
 myImage.push("solo726/blue-osean-test:v1")
 myImage.push("latest")
 }
-
+}
       }
     }
     stage('deploy') {
