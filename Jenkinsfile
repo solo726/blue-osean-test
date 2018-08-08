@@ -94,9 +94,9 @@ echo "imageName:${imageName}"
 
 echo "${imageName}" > /pipeline-info/image-name
 
-cd /tmp
+cd /tmp/blue-osean-test
 
-docker build -f blue-osean-test/deploy/docker/Dockerfile . --tag ${imageName}
+docker build -f deploy/docker/Dockerfile . --tag ${imageName}
 
 '''
           }
