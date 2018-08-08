@@ -100,6 +100,8 @@ export IMAGENAME="${imageName}"
 
 docker build -f blue-osean-test/deploy/docker/Dockerfile . --tag ${imageName}
 
+
+set
 '''
           }
         }
@@ -110,7 +112,7 @@ docker build -f blue-osean-test/deploy/docker/Dockerfile . --tag ${imageName}
         sh '''set 
 
 
-echo IMAGENAME
+echo "${imageName}"
 
 
 '''

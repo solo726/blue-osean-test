@@ -1,9 +1,9 @@
 package main
 
 import (
-	"net/http"
 	"fmt"
 	"log"
+	"net/http"
 	"sync/atomic"
 )
 
@@ -27,7 +27,6 @@ func handleHi(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("<h1 style='color: " + r.FormValue("color") +
 		"'>Welcome!</h1>You are visitor number " + fmt.Sprint(visitorNum) + "!"))
 }
-
 
 func handleHi2(w http.ResponseWriter, r *http.Request) {
 	//if match, _ := regexp.MatchString(`\w+$`, r.FormValue("color")); !match {
