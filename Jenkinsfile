@@ -131,13 +131,7 @@ docker run --rm ${imageName} go test -v -cover=true /go/src/blue-osean-test/main
       steps {
         sh '''cd /tmp/blue-osean-test
 
-helm upgrade \\\\
---install \\\\
---namespace blue-osean-test \\\\
---debug \\\\
---set images=`cat /pipeline-info/image-name` \\\\
-bookinfo \\\\
-deploy/helm/blue-osean-test'''
+helm upgrade --install --namespace blue-osean-test --debug --set images=`cat /pipeline-info/image-name` blue-osean-test deploy/helm/blue-osean-test'''
       }
     }
   }
