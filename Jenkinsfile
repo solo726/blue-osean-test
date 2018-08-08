@@ -119,7 +119,6 @@ docker run --rm ${imageName} go test -v -cover=true /go/src/blue-osean-test/main
     stage('image push') {
       steps {
         sh 'echo push'
-       }
       }
     }
     stage('deploy') {
