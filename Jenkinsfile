@@ -82,7 +82,25 @@ go fmt  '''
         }
         stage('image build') {
           steps {
-            echo 'image build'
+            sh '''
+gitCommitVersion=`cat /pipeline-info/git-commit`
+
+echo "gitCommitVersion:${gitCommitVersion}"
+
+imageName="solo726/blue-osean-test:${gitCommitVersion}"
+
+echo "imageName:${imageName}"
+
+
+echo "${imageName}" > /pipeline-info/image-name
+
+cd /tmp
+
+export IMAGENAME="${imageName}"
+
+docker build -f blue-osean-test/deploy/docker/Dockerfile . --tag ${imageName}
+
+'''
           }
         }
       }
