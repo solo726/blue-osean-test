@@ -107,7 +107,13 @@ docker build -f blue-osean-test/deploy/docker/Dockerfile . --tag ${imageName}
     }
     stage('unit test') {
       steps {
-        echo 'unit test'
+        sh '''set 
+
+
+echo IMAGENAME
+
+
+'''
       }
     }
     stage('image push') {
