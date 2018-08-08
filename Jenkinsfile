@@ -118,7 +118,14 @@ docker run --rm ${imageName} go test -v -cover=true /go/src/blue-osean-test/main
     }
     stage('image push') {
       steps {
-        echo 'image push'
+withCredentials([usernamePassword( credentialsId: 'docker-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+
+docker.withRegistry('', 'docker-login') {
+sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+myImage.push("${env.BUILD_NUMBER}")
+myImage.push("latest")
+}
+}
       }
     }
     stage('deploy') {
