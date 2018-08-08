@@ -118,14 +118,10 @@ docker run --rm ${imageName} go test -v -cover=true /go/src/blue-osean-test/main
     }
     stage('image push') {
       steps {
-        script {
-
           docker.withRegistry('https://registry.hub.docker.com', 'docker-login') {
             def customImage = docker.build("solo726/blue-osean-test:v1")
             customImage.push()
           }
-        }
-
       }
     }
     stage('deploy') {
