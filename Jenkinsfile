@@ -118,13 +118,12 @@ docker run --rm ${imageName} go test -v -cover=true /go/src/blue-osean-test/main
     }
     stage('image push') {
       steps {
-        sh '''
+        sh '''imageName = `cat /pipeline-info/image-name`
 
 docker.withRegistry(\'https://hub.docker.com/u/solo726/\', \'41cdf4bc-44a8-42ab-9bdb-b5739314bad1\') {
         
-        def imageName = `cat /pipeline-info/image-name`
 
-        def customImage = docker.build(imageName)
+        def customImage = docker.build("${imageName}")
 
         /* Push the container to the custom Registry */
         customImage.push()
