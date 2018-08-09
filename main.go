@@ -25,7 +25,7 @@ func handleHi(w http.ResponseWriter, r *http.Request) {
 	//visitors++
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	w.Write([]byte("<h1 style='color: " + r.FormValue("color") +
-		"'>Welcome c!</h1>You are visitor number " + fmt.Sprint(visitorNum) + "!"))
+		"'>Welcome d!</h1>You are visitor number " + fmt.Sprint(visitorNum) + "!"))
 }
 
 func handleHi2(w http.ResponseWriter, r *http.Request) {
