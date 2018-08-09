@@ -29,7 +29,7 @@ spec:
     }
   }
     triggers {
-          pollSCM('H/1 * * * *')
+          pollSCM('H/3 * * * *')
       }
   stages {
     stage('prepare') {
