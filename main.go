@@ -13,7 +13,7 @@ func main() {
 	log.Printf("Starting on port 8080")
 	http.HandleFunc("/hi", handleHi)
 	http.HandleFunc("/hi2", handleHi2)
-	log.Fatal(http.ListenAndServe("localhost:8080", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
 func handleHi(w http.ResponseWriter, r *http.Request) {
